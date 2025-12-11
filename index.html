@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>For You ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(160deg, #ff9a9e, #fecfef, #fbc2eb);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      position: relative;
+      padding: 20px;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #ff6f91;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #ff6f91; }
+      100% { text-shadow: 0 0 25px #ff0033; }
+    }
+
+    .message {
+      width: 100%;
+      max-width: 360px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(255,255,255,0.4);
+      text-shadow: 0 0 8px #ff2e63;
+      white-space: pre-line;
+    }
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      color: pink;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+
+    .btn {
+      margin-top: 18px;
+      padding: 12px 22px;
+      background: #ff2e63;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 12px #ff2e63;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.07);
+      background: #ff1744;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>For Someone<br>Who Means A Lot To Me ❤️</h1>
+
+  <div class="message" id="messageBox"></div>
+
+  <button class="btn" onclick="playMusic()">💗 Play Soft Music</button>
+
+  <audio id="bgMusic">
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6c68e3fb44.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    // Typewriter Effect
+    const text =
+      "Just wanted to tell you something...\n\n" +
+      "You matter to me.\n" +
+      "You make my heart calm.\n" +
+      "You make my days softer.\n" +
+      "And I like you… a little more every day ❤️";
+
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("messageBox").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+      }
+    }
+
+    typeWriter();
+
+    // Floating Hearts (optimized for smooth phone performance)
+    function createHearts() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+      heart.style.fontSize = (15 + Math.random() * 15) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHearts, 450);
+
+    // Music
+    function playMusic() {
+      document.getElementById("bgMusic").play();
+    }
+  </script>
+
+</body>
+</html>
